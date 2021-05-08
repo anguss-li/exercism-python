@@ -4,10 +4,8 @@ def convert(number):
     returns: string, see README
     '''
     converted_number = ''
-    factors = {3:'i', 5:'a', 7:'o'}
+    factors = [(3, 'Pling'), (5, 'Plang'), (7, 'Plong')]
     for factor in factors:
-        if number % factor == 0:
-            converted_number += ('Pl' + factors[factor] + 'ng')
-    if len(converted_number) == 0:
-        converted_number = str(number)
-    return converted_number
+        if number % factor[0] == 0:
+            converted_number += factor[1]
+    return converted_number if len(converted_number) != 0 else str(number)
