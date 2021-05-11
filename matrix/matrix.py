@@ -7,17 +7,15 @@ class Matrix:
         non_entries = str.maketrans(dict.fromkeys("\n", " "))
         matrix_entries = matrix_string.translate(non_entries).split(" ")
         column_num = int(len(matrix_entries) / row_num)
-        self.matrix = {}
+        self.matrix = []
         for row in range(row_num):
             for column in range(column_num):
-                coords = (row + 1, column + 1)
                 index = column + (column_num * row)
-                self.matrix[coords] = int(matrix_entries[index])
+                entry = int(matrix_entries[index])
+                self.matrix.append((entry, row + 1, column + 1))
 
     def row(self, index):
-        matrix = self.matrix
-        return [matrix[coords] for coords in matrix if coords[0] == index]
+        return [entry[0] for entry in self.matrix if entry[1] == index]
 
     def column(self, index):
-        matrix = self.matrix
-        return [matrix[coords] for coords in matrix if coords[1] == index]
+        return [entry[0] for entry in self.matrix if entry[2] == index]
