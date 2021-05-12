@@ -3,19 +3,11 @@ class Matrix:
         '''
         matrix_string: string of numbers, "\n" denotes row break
         '''
-        row_num = matrix_string.count("\n") + 1
-        non_entries = str.maketrans(dict.fromkeys("\n", " "))
-        matrix_entries = matrix_string.translate(non_entries).split(" ")
-        column_num = int(len(matrix_entries) / row_num)
-        self.matrix = []
-        for row in range(row_num):
-            for column in range(column_num):
-                index = column + (column_num * row)
-                entry = int(matrix_entries[index])
-                self.matrix.append((entry, row + 1, column + 1))
+        rows = matrix_string.split("\n")
+        self.matrix = [list(map(int, row.split(" "))) for row in rows]
 
     def row(self, index):
-        return [entry[0] for entry in self.matrix if entry[1] == index]
+        return self.matrix[index - 1]
 
     def column(self, index):
-        return [entry[0] for entry in self.matrix if entry[2] == index]
+        return [(row[index - 1]) for row in self.matrix]
