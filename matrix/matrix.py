@@ -3,7 +3,8 @@ class Matrix:
         '''
         A 2D array of integers, where each element represents a row. 
         
-        Rows are split according to the delimiter "\n" in matrix_string.
+        Args:
+            matrix_string: numbers separated by spaces. "\n" is a row break.
         '''
         rows = matrix_string.splitlines()
         self.matrix = [[int(entry) for entry in row.split()] for row in rows]
