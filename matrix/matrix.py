@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Matrix:
     def __init__(self, matrix_string: str) -> None:
         '''
@@ -9,14 +12,14 @@ class Matrix:
         rows = matrix_string.splitlines()
         self.matrix = [[int(entry) for entry in row.split()] for row in rows]
 
-    def row(self, index: int) -> list:
+    def row(self, index: int) -> List[int]:
         '''
-        Returns the nth row of the matrix, where n == index.
+        Return the nth row of the matrix, where n == index.
         '''
-        return self.matrix[index - 1]
+        return [entry for entry in self.matrix[index - 1]]
 
-    def column(self, index: int) -> list:
+    def column(self, index: int) -> List[int]:
         '''
-        Returns a list of the nth integer in each row, where n == index.
+        Return a list of the nth integer in each row, where n == index.
         '''
         return [row[index - 1] for row in self.matrix]
