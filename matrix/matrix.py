@@ -16,7 +16,7 @@ class Matrix:
         '''
         Return the nth row of the matrix, where n == index.
         '''
-        return [entry for entry in self.matrix[index - 1]]
+        return self.matrix[index - 1].copy()
 
     def column(self, index: int) -> List[int]:
         '''
