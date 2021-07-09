@@ -19,11 +19,11 @@ def get_palindrome(lower: int, upper: int, reverse: bool = False) -> int:
     also all within range; if reverse = True, return the last palindrome
     '''
     if lower > upper:
-        raise ValueError("Minimum factor larger than maximum")
+        raise ValueError("Minimum larger than maximum")
     args = (upper ** 2, lower ** 2 - 1, -1) if reverse else (lower ** 2, upper ** 2 + 1)
     for x in range(*args):
         x_str = str(x)
-        if x_str == x_str[::-1] and any(lower <= f[1] <= upper for f in get_factors(x, lower, upper)):
+        if x_str == x_str[::-1] and any(upper >= f[1] for f in get_factors(x, lower, upper)):
             return x
     return None
 
