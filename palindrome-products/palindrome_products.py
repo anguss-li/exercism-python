@@ -15,8 +15,8 @@ def get_factors(n: int, min_factor: int, max_factor: int) -> List[List[int]]:
 
 def get_palindrome(lower: int, upper: int, reverse: bool = False) -> int:
     '''
-    Return the first palindromic number found within the range which has factors
-    that are also all in range; if reverse = True, return the last palindrome
+    Return the first palindromic number in the range which has factors that are 
+    also all within range; if reverse = True, return the last palindrome
     '''
     if lower > upper:
         raise ValueError("Minimum factor larger than maximum")
