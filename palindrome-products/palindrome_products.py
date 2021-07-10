@@ -8,7 +8,7 @@ def get_factors(n: int, min_factor: int, max_factor: int) -> List[List[int]]:
     if n == None:
         return []
 
-    # For a integer i in range(min_factor, max_factor) to be a valid factor of 
+    # For an integer i in range(min_factor, max_factor) to be a valid factor of 
     # n, n//i <= max_factor must be True. This evaluates to i >= n//max_factor.
     min_i = n // max_factor
     lower = min_factor if min_factor > min_i else min_i
