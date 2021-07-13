@@ -1,47 +1,45 @@
 from typing import List
 
 
+ENDINGS = (
+    'first',
+    'second',
+    'third',
+    'fourth',
+    'fifth',
+    'sixth',
+    'seventh',
+    'eighth',
+    'ninth',
+    'tenth',
+    'eleventh',
+    'twelfth'
+)
+
+GIFTS = (
+    'a Partridge in a Pear Tree.',
+    'two Turtle Doves, and',
+    'three French Hens,',
+    'four Calling Birds,',
+    'five Gold Rings,',
+    'six Geese-a-Laying,',
+    'seven Swans-a-Swimming,',
+    'eight Maids-a-Milking,',
+    'nine Ladies Dancing,',
+    'ten Lords-a-Leaping,',
+    'eleven Pipers Piping,',
+    'twelve Drummers Drumming,'
+)
+
 def recite(start_verse: int, end_verse: int) -> List[str]:
     '''Print the Twelve Days of Christmas from the start verse to the end'''
 
-    def ordinal(number: int) -> str:
-        endings = (
-            'first',
-            'second',
-            'third',
-            'fourth',
-            'fifth',
-            'sixth',
-            'seventh',
-            'eighth',
-            'ninth',
-            'tenth',
-            'eleventh',
-            'twelfth'
-        )
-        return endings[number - 1]
+    def first_line(day: int) -> str:
+        return f'On the {ENDINGS[day]} day of Christmas my true love gave to me:'
 
-    gifts = {
-        1: 'a Partridge in a Pear Tree.',
-        2: 'two Turtle Doves,',
-        3: 'three French Hens,',
-        4: 'four Calling Birds,',
-        5: 'five Gold Rings,',
-        6: 'six Geese-a-Laying,',
-        7: 'seven Swans-a-Swimming,',
-        8: 'eight Maids-a-Milking,',
-        9: 'nine Ladies Dancing,',
-        10: 'ten Lords-a-Leaping,',
-        11: 'eleven Pipers Piping,',
-        12: 'twelve Drummers Drumming,'
-    }
+    def gifts(day: int) -> str:
+        gifts = [first_line(day)]
+        gifts.extend([GIFTS[day] for day in reversed(range(0, day + 1))])
+        return " ".join(gifts)
 
-    verses = []
-    for day in range(start_verse, end_verse + 1):
-        verse = [f'On the {ordinal(day)} day of Christmas my true love gave to me:']
-        verse.extend([gifts[day] for day in range(day, 0, -1)])
-        if day > 1:
-            verse.insert(-1, "and")
-        verses.append(" ".join(verse))
-
-    return verses
+    return [gifts(day) for day in range(start_verse - 1, end_verse)]
