@@ -1,6 +1,5 @@
 from calendar import day_name, monthrange, weekday
 from datetime import date
-from re import sub
 
 
 class MeetupDayException(Exception):
@@ -9,15 +8,15 @@ class MeetupDayException(Exception):
 
 def meetup(year: int, month: int, week: str, day_of_week: str) -> date:
     if week == 'teenth':
-        week = range(13, 20)
+        search_range = range(13, 20)
     elif week == 'last':
         last_day = monthrange(year, month)[1]
-        week = range(last_day, last_day-7, -1)
+        search_range = range(last_day, last_day-7, -1)
     else:
-        week_no = (int(sub(r'[a-z]+', '', week))-1)*7 + 1
-        week = range(0 + week_no, 8 + week_no)
+        week_num = int(week[0])*7 - 6
+        search_range = range(0 + week_num, 8 + week_num)
     try:
-        for day in week:
+        for day in search_range:
             if day_name[weekday(year, month, day)] == day_of_week:
                 return date(year, month, day)
     except ValueError:
