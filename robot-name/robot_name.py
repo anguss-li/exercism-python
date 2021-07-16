@@ -1,5 +1,5 @@
-import random
-import string
+from random import choices
+from string import ascii_uppercase as letters
 
 
 class Robot:
@@ -7,8 +7,7 @@ class Robot:
 
     def reset(self):
         while self.name in Robot._names:
-            new_name = (random.choices(string.ascii_uppercase, k=2) +
-                        random.choices(range(0, 9), k=3))
+            new_name = (choices(letters, k=2) + choices(range(0, 9), k=3))
             self.name = ''.join(str(char) for char in new_name)
         Robot._names.add(self.name)
 
