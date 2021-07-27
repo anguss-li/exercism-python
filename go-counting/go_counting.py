@@ -1,4 +1,4 @@
-from typing import Dict, List, Set, Tuple
+from typing import Dict, Iterable, List, Set, Tuple
 
 WHITE, BLACK, NONE = 'W', 'B', ' '
 
@@ -14,6 +14,10 @@ class Board:
     def __init__(self, board: List[str]):
         self.board = [list(row) for row in board]
         assert all(len(row) == len(self.board[0]) for row in self.board)
+
+    def stone(self, point: Tuple[int]) -> str:
+        '''Find stone (or lack thereof) at coordinates of point'''
+        return self.board[point[1]][point[0]]
 
     def territory(self, x: int, y: int) -> Tuple[str, Set[Tuple[int]]]:
         """
@@ -33,10 +37,10 @@ class Board:
 
         def valid(point: Tuple[int]) -> bool:
             '''Check if given coordinates correspond to valid point on board'''
-            x, y = point
-            return 0 <= x < len(self.board[0]) and 0 <= y < len(self.board)
+            return (0 <= point[0] < len(self.board[0])
+                    and 0 <= point[1] < len(self.board))
 
-        def neighbours(x: int, y: int) -> Tuple[Tuple[int]]:
+        def neighbours(x: int, y: int) -> Iterable[Tuple[int]]:
             '''Return all valid surrounding points of point (x, y)'''
             neighbours = ((x, y+1),
                           (x, y-1),
@@ -45,18 +49,16 @@ class Board:
             return (point for point in neighbours if valid(point))
 
         point = (x, y)
-
         if not valid(point):
             raise ValueError("Point must be on the board.")
-        if self.board[y][x] != NONE:
+        if self.stone(point) != NONE:
             return NONE, set()
 
         ownership, stack, territory = set(), [point], {point}
         while stack:
             x, y = stack.pop()
             for point in neighbours(x, y):
-                stone = self.board[point[1]][point[0]]
-                if stone in (BLACK, WHITE):
+                if (stone := self.stone(point)) in (BLACK, WHITE):
                     ownership.add(stone)
                 elif point not in territory:
                     stack.append(point)
