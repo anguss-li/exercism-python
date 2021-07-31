@@ -1,13 +1,9 @@
-def slices(series, length):
-    '''
-    series: string, digits to be sliced
-    length: integer, the number of digits in each individual slice
-    returns: list of strings, slices of original series each length long
-    '''
-    if length > len(series) or length < 1:
-        raise ValueError(
-            "Cannot slice %d digits using %d length" % (len(series), length))
-    slice_list = []
-    for integer in range(len(series)-length+1):
-        slice_list.append(''.join(series[integer:integer+length]))
-    return slice_list
+from typing import List
+
+
+def slices(series: str, length: int) -> List[str]:
+    '''Slice series of digits into subsections of set length'''
+    if length > (digits := len(series)) or length < 1:
+        raise ValueError(f'Cannot slice {digits} digits using {length} length')
+
+    return [''.join(series[i:i+length]) for i in range(digits-length+1)]
