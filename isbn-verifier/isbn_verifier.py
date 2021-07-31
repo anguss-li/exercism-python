@@ -1,18 +1,18 @@
-import string
+from string import digits
 
 
-def is_valid(isbn):
-    isbn_digits = isbn.replace("-", "")
-    if len(isbn_digits) != 10:
+def is_valid(isbn: str) -> bool:
+    '''Verify a ISBN-10 number.'''
+    number = list(isbn.replace('-', ''))
+    if len(number) != 10:
         return False
     digit_sum = 0
-    for index in range(len(isbn_digits)):
-        digit = isbn_digits[index]
-        if digit == "X" and index == 9:
-            to_add = 10 * (10 - index)
-        elif digit not in string.digits:
+    for index, digit in enumerate(number):
+        if index == 9 and digit == 'X':
+            value = 10
+        elif digit not in digits:
             return False
         else:
-            to_add = int(digit) * (10 - index)
-        digit_sum += to_add
+            value = int(digit)
+        digit_sum += value * (10-index)
     return digit_sum % 11 == 0
