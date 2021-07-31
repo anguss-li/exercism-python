@@ -1,12 +1,11 @@
-def find_anagrams(word, candidates):
-    lower_word = word.lower()
-    word_chars = sorted(lower_word)
-    anagrams = []
+from typing import List
 
-    for candidate in candidates:
-        lower_candidate = candidate.lower()
-        candidate_chars = sorted(lower_candidate)
-        if candidate_chars == word_chars and lower_candidate != lower_word:
-            anagrams.append(candidate)
 
-    return anagrams
+def find_anagrams(word: str, candidates: List[str]) -> List[str]:
+    '''Return all candidate words that are anagrams of the given word.'''
+    word = word.lower()
+    letters = sorted(word)
+    return [candidate 
+            for candidate in candidates
+            if sorted((reference := candidate.lower())) == letters
+            and reference != word]
