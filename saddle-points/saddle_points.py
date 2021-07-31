@@ -13,7 +13,7 @@ def saddle_points(matrix: list) -> List[Dict[str, int]]:
 
     for i, row in enumerate(matrix):
         for j, x in enumerate(row):
-            if x == max(row) and x == min([row[j] for row in matrix]):
-                points.add((i + 1, j + 1))
+            if x == max(row) and x == min(row[j] for row in matrix):
+                points.add((i+1, j+1))
 
     return [{"row": point[0], "column": point[1]} for point in points]
