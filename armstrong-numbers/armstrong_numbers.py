@@ -1,8 +1,5 @@
-def is_armstrong_number(number):
-    '''
-    number: int, number to be tested for narcissism
-    returns: True if number is a narcissistic/Armstrong number, False otherwise
-    '''
+def is_armstrong_number(number: int) -> bool:
+    '''Check if the given number is a narcissistic/Armstrong number.'''
     digits = str(number)
-    digits_num = len(digits)
-    return sum(int(digit) ** digits_num for digit in digits) == number
+    length = len(digits)
+    return sum(int(digit) ** length for digit in digits) == number
