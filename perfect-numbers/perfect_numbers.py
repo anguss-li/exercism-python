@@ -1,9 +1,6 @@
-import math
-
-
 def classify(number):
     '''
-    number: integer, number to be classfied
+    number: integer, number to be classified
     returns: string, one of "perfect", "abundant" or "deficient" according to
     README
     '''
@@ -15,15 +12,12 @@ def classify(number):
         number: integer
         returns: sum of all factors of number besides itself
         '''
-        if number == 1:
-            return 0
+        factors = {0}
 
-        square_root = math.sqrt(number)
-        factors = {1}
-
-        for i in range(2, int(square_root) + 1):
+        for i in range(1, int(number ** 0.5)+1):
             if number % i == 0:
-                factors = factors.union([i, number // i])
+                factors.update((i, number//i))
+        factors.remove(number)
 
         return sum(factors)
 
