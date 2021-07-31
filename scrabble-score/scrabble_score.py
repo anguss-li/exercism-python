@@ -1,12 +1,10 @@
-SCORES = {
-    **{letter: 1 for letter in "AEIOULNRST"},
-    **{letter: 2 for letter in "DG"},
-    **{letter: 3 for letter in "BCMP"},
-    **{letter: 4 for letter in "FHVWY"},
-    **{letter: 5 for letter in "K"},
-    **{letter: 8 for letter in "JX"},
-    **{letter: 10 for letter in "QZ"},
-}
+SCORES = {**{letter: 1 for letter in 'AEIOULNRST'},
+          **{letter: 2 for letter in 'DG'},
+          **{letter: 3 for letter in 'BCMP'},
+          **{letter: 4 for letter in 'FHVWY'},
+          **{letter: 5 for letter in 'K'},
+          **{letter: 8 for letter in 'JX'},
+          **{letter: 10 for letter in 'QZ'}, }
 
 
 def score(word: str) -> int:
