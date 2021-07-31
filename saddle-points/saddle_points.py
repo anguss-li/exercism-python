@@ -1,12 +1,12 @@
 from typing import List, Dict
 
 
-def saddle_points(matrix: list) -> List[Dict[str, int]]:
+def saddle_points(matrix: List[List]) -> List[Dict[str, int]]:
     '''
     Return all entries which are largest in their row and are smallest in their
     column.
     '''
-    if len(set(map(len, matrix))) > 1:
+    if not all(len(row) == len(matrix[0]) for row in matrix):
         raise ValueError("Rows must all be of equal length.")
 
     points = set()
