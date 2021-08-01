@@ -1,11 +1,9 @@
-def convert(number):
-    '''
-    number: integer, number which will be 'converted' into raindrop sounds
-    returns: string, see README
-    '''
-    converted_number = ''
-    factors = [(3, 'Pling'), (5, 'Plang'), (7, 'Plong')]
-    for factor in factors:
-        if number % factor[0] == 0:
-            converted_number += factor[1]
-    return converted_number if len(converted_number) != 0 else str(number)
+FACTORS = [(3, 'Pling'), (5, 'Plang'), (7, 'Plong')]
+
+
+def convert(number: int) -> str:
+    '''Convert number into raindrop sounds.'''
+    converted = ''.join(factor[1]
+                        for factor in FACTORS
+                        if number % factor[0] == 0)
+    return converted if converted else str(number)
