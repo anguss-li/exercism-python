@@ -9,8 +9,8 @@ class Matrix:
         Args:
             matrix_string: numbers separated by spaces. "\n" is a row break.
         '''
-        rows = matrix_string.splitlines()
-        self.matrix = [[int(entry) for entry in row.split()] for row in rows]
+        self.matrix = [[int(entry) for entry in row.split()]
+                       for row in matrix_string.splitlines()]
 
     def row(self, index: int) -> List[int]:
         '''
