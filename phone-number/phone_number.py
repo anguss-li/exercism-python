@@ -6,8 +6,8 @@ class PhoneNumber:
     A North American Numbering Plan (NANP) compliant telephone number.
 
     Attributes:
-        number: a 10 digit phone number
-        area_code: 3 digit number representing (NANP) area
+        number: 10 digit phone number
+        area_code: 3 digit number representing a NANP area
     '''
 
     def __init__(self, number: str):
@@ -15,9 +15,9 @@ class PhoneNumber:
         Clean number and check legality.
         '''
         number = sub(r'[^0-9]', '', number)
-        if (number[0] != '1' and len(number) == 11) or (len(number) < 10):
+        if (length := len(number)) < 10 or (number[0] != '1' and length == 11):
             raise ValueError('Invalid NANP phone number')
-        self.number = number[len(number)-10:len(number)]
+        self.number = number[length-10:length]
         if any(n == '0' or n == '1' for n in (self.number[0], self.number[3])):
             raise ValueError('1st/4th digit(s) invalid, must be from 2-9')
         self.area_code = self.number[0:3]
