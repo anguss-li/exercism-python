@@ -9,5 +9,6 @@ def largest_product(series: str, size: int) -> int:
         raise ValueError('Size cannot be larger than series.')
     elif length == 0 or size == 0:
         return 1
+
     return max(prod(int(series[i+n]) for n in range(size))
                for i in range(length-size+1))
