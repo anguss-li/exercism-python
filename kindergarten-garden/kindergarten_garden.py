@@ -1,7 +1,7 @@
 from itertools import chain
-from typing import List
+from typing import Iterable, List
 
-STUDENTS = ['Alice',
+STUDENTS = ('Alice',
             'Bob',
             'Charlie',
             'David',
@@ -12,7 +12,7 @@ STUDENTS = ['Alice',
             'Ileana',
             'Joseph',
             'Kincaid',
-            'Larry']
+            'Larry')
 
 PLANTS = {'C': 'Clover',
           'G': 'Grass',
@@ -27,11 +27,11 @@ class Garden:
     their name order and each column is 2 plants wide.
 
     Attributes:
-        diagram: type of plant in each position in the rows
-        students: students taking care of the plants
+        students: all students taking care of plants
+        ownership: record of which plants each student is responsible for
     """
 
-    def __init__(self, diagram: str, students: List[str] = STUDENTS):
+    def __init__(self, diagram: str, students: Iterable[str] = STUDENTS):
         """Determine which plants each student takes care of."""
         diagram = diagram.splitlines()
         assert all(len(row) == (row_len := len(diagram[0])) for row in diagram)
