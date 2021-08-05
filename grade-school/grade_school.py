@@ -11,10 +11,9 @@ class School:
 
     def roster(self) -> list:
         """Find all students in the school regardless of grade."""
-        roster = [student
-                  for grade in sorted(self.students)
-                  for student in self.students[grade]]
-        return roster if roster else []
+        return [student
+                for grade in sorted(self.students)
+                for student in self.students[grade]]
 
     def grade(self, grade_number: int):
         """Find all students in a particular grade."""
