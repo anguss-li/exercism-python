@@ -53,8 +53,7 @@ def say(number):
     place, name = PLACES[limit]
     digit, remainder = number // place, number % place
 
-    head = (BY_TEN[digit]
-            if limit == 100
+    head = (BY_TEN[digit] if limit == 100
             else BY_ONE[digit] if limit == 1000
             else say(digit))
     spacer = '-' if limit == 100 else ' '
