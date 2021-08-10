@@ -29,7 +29,7 @@ class Cell:
     def update_listeners(self, old_values: Dict[Cell, int]):
         '''Recompute values of listeners according to values in changed.'''
         for listener in self._listeners:
-            listener.recompute(old_values)
+            listener.update(old_values)
 
     @property
     def value(self) -> int:
@@ -46,7 +46,7 @@ class InputCell(Cell):
         value, _listeners: (see Cell())
     '''
     @Cell.value.setter
-    def value(self, new_value):
+    def value(self, new_value: int):
         '''Updates values of listening cells and calls callbacks.'''
         if new_value != self.value:
             self._value = new_value
@@ -98,7 +98,7 @@ class ComputeCell(Cell):
         '''Return value contained by self.'''
         return self._compute_function([cell.value for cell in self._inputs])
 
-    def recompute(self, old_values: Dict[Cell, int]) -> None:
+    def update(self, old_values: Dict[Cell, int]) -> None:
         '''Check if value needs to be updated and updates listeners.'''
         if (new_value := self.compute()) != self.value:
             old_values.setdefault(self, self.value)
