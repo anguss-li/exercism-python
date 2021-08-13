@@ -1,5 +1,5 @@
+from operator import add, floordiv, mul, sub
 from re import split
-from operator import add, sub, mul, floordiv
 
 OPERATIONS = {
     'plus': add,
